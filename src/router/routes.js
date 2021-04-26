@@ -7,7 +7,7 @@ import homePage from '../pages/Home.vue'
 import newsPage from '../pages/news/NewsPage.vue'
 import loginPage from '../pages/Login.vue'
 import notFoundPage from '../pages/NotFound.vue'
-
+import ListItem from '../components/cuc/ListItem.vue'
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
 
@@ -46,6 +46,11 @@ export const routes = [
   {
     path: '*',
     component: notFoundPage,
+    meta: { title: `${DOMAIN_TITLE} | not found` }
+  },
+  {
+    path: '/list-item',
+    component: ListItem,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   }
 ]
