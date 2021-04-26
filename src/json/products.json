@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Áo bomber",
+    "price": "200",
+    "image": "https://image.shutterstock.com/image-photo/urban-girl-fashion-street-look-600w-1847829430.jpg",
+    "quantity": 1,
+    "variation": "red"
+  },
+  {
+    "id": 2,
+    "title": "[Mã FASHIONGREEN264 giảm 10% đơn 99k] Quần JEAN ỐNG RỘNG DÁNG SUÔNG MÀU XÁM Kèm Hình Thật",
+    "price": "210",
+    "image": "https://image.shutterstock.com/image-photo/stack-clothing-jeans-sweaters-on-600w-1268384791.jpg",
+    "quantity": 1,
+    "variation": "red"
+  },
+  {
+    "id": 3,
+    "title": "Bagggggg",
+    "price": "240",
+    "image": "https://image.shutterstock.com/image-photo/moscow-russia-08142016-fake-handbag-600w-469008173.jpg",
+    "quantity": 5,
+    "variation": "red"
+  },
+  {
+    "id": 4,
+    "title": "Shoes 1",
+    "price": "600",
+    "image": "https://image.shutterstock.com/image-photo/male-product-reviewer-tells-his-600w-1616372782.jpg",
+    "quantity": 4,
+    "variation": "red"
+  },
+  {
+    "id": 5,
+    "title": "Shoes 2",
+    "price": "300",
+    "image": "https://via.placeholder.com/150",
+    "quantity": 2,
+    "variation": "red"
+  }
+]

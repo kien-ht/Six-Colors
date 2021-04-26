@@ -1,38 +1,46 @@
 <template>
   <div>
     <h1>Your cart</h1>
-    <div>
-      <cart-list />
+    <cart-list :addedProducts="addedProducts" />
+    <div class="cart-footer">
+      <p class="fw-600">Total price: $100</p>
+      <b-button variant="primary">Checkout</b-button>
     </div>
   </div>
 </template>
 
 <script>
 import CartList from './CartList.vue'
+import dummyProducts from '../../json/products.json'
 export default {
   components: { CartList },
 
   name: 'Cart',
 
-  data () {
+  data() {
     return {
       addedProducts: []
     }
   },
 
+  created() {
+    this.fetchProductsInCart()
+  },
+
   methods: {
-    fetchProductsInCart () {
+    fetchProductsInCart() {
       let initialAddedProducts
-      const savedProducts = localStorage.get(
-        'addedProducts',
-        JSON.parse(initialAddedProducts)
-      )
-      try {
-        if (savedProducts) {
-          this.addedProducts = savedProducts
+      const savedProducts = localStorage.getItem('productsInCart')
+      if (savedProducts) {
+        try {
+          initialAddedProducts = JSON.parse(savedProducts)
+          this.addedProducts = initialAddedProducts
+        } catch (error) {
+          console.log(error)
         }
-      } catch (error) {
-        console.log(error)
+      } else {
+        initialAddedProducts = dummyProducts
+        localStorage.setItem('productsInCart', JSON.stringify(initialAddedProducts))
       }
     }
   }
@@ -40,4 +48,5 @@ export default {
 </script>
 
 <style>
+  @import url('../../scss/pages/cart.scss');
 </style>

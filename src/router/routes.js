@@ -7,12 +7,11 @@ import homePage from '../pages/Home.vue'
 import newsPage from '../pages/news/NewsPage.vue'
 import loginPage from '../pages/Login.vue'
 import notFoundPage from '../pages/NotFound.vue'
-import ListItem from '../components/cuc/ListItem.vue'
-import List from '../components/cuc/List.vue'
+import CartPage from '../pages/cart'
+
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
 import Checkout from '../components/ngoc/checkout.vue'
-import Cart from '../components/ngoc/cart.vue'
 export const routes = [
   {
     path: '/',
@@ -62,5 +61,10 @@ export const routes = [
   },
 
   { path: '/Checkout', name: 'Checkout', component: Checkout, meta: { title: `${DOMAIN_TITLE} | Checkout` } },
-  { path: '/cart', name: 'Cart', component: Cart, meta: { title: `${DOMAIN_TITLE} | Cart` } }
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartPage,
+    meta: { title: `${DOMAIN_TITLE} | cart` }
+  }
 ]
