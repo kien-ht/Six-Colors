@@ -10,7 +10,6 @@
         <li>
           <router-link :to="{ name: 'news' }">News</router-link>
         </li>
-
         <li>
           <router-link :to="{ name: 'Cart' }" exact>Cart</router-link>
         </li>
