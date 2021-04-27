@@ -1,13 +1,19 @@
 <template>
   <div>
     <h1>Your cart</h1>
-    <cart-list :addedProducts="addedProducts" @handleDeleteInCart="handleDelete" />
+    <cart-list
+      :addedProducts="addedProducts"
+      @handleDeleteInCart="handleDelete"
+      @handleSelectMultiple="handleSelectMulti"
+    />
     <div class="cart-footer">
       <div>
-        <b-button variant="danger" @click="toggleDeleteBulkModal">Bulk Delete</b-button>
+        <b-button variant="danger" @click="toggleDeleteBulkModal" :disabled="isBtnDeleteBulkDisabled"
+          >Bulk Delete</b-button
+        >
       </div>
       <div class="cart-footer__right">
-        <p class="fw-600">Total price: $100</p>
+        <p class="fw-600">Total price: ${{ getTotalPrice }}</p>
         <b-button variant="primary">Checkout</b-button>
       </div>
     </div>
@@ -31,12 +37,22 @@ export default {
   data() {
     return {
       addedProducts: [],
-      isModalShown: false
+      isModalShown: false,
+      deletingProducts: [],
+      isBtnDeleteBulkDisabled: true
     }
   },
 
   created() {
     this.fetchProductsInCart()
+  },
+
+  computed: {
+    getTotalPrice() {
+      return this.addedProducts.reduce((sum, object) => {
+        return sum + object.price * object.quantity
+      }, 0)
+    }
   },
 
   methods: {
@@ -68,10 +84,26 @@ export default {
       this.isModalShown = !this.isModalShown
     },
 
-    confirmDeleteBulk() {
-      console.log(11)
+    handleSelectMulti(arr) {
+      if (arr.length) {
+        this.isBtnDeleteBulkDisabled = false
+      } else {
+        this.isBtnDeleteBulkDisabled = true
+      }
+      this.deletingProducts = arr
     },
-    
+
+    confirmDeleteBulk() {
+      const remainProducts = this.addedProducts.filter((product) => {
+        return !this.deletingProducts.find((item) => {
+          return item.id === product.id
+        })
+      })
+      this.addedProducts = remainProducts
+      localStorage.setItem('productsInCart', JSON.stringify(remainProducts))
+      this.isModalShown = false
+    },
+
     cancelDeleteBulk() {
       this.isModalShown = false
     }

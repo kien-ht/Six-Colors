@@ -16,6 +16,7 @@
             @toggleDeleteModal="toggleDeleteModal"
             @onDelete="onDeleteProduct"
             @handleSelectProduct="onSelectProduct"
+            @handleDecreaseQuantity="decreaseQuantity"
           />
         </div>
       </b-list-group>
@@ -44,6 +45,9 @@ export default {
     },
     handleDeleteInCart: {
       type: Function
+    },
+    handleSelectMultiple: {
+      type: Function
     }
   },
 
@@ -51,7 +55,8 @@ export default {
     return {
       isModalShown: false,
       deletingProduct: {},
-      selectedProducts: []
+      selectedProducts: [],
+      updatedProduct: {}
     }
   },
 
@@ -74,16 +79,38 @@ export default {
     },
 
     onSelectProduct(item) {
-      const hasId = this.selectedProducts.find(p => p.id === item.id)
+      const hasId = this.selectedProducts.find((p) => p.id === item.id)
 
       if (hasId) {
         const newSelectedProducts = this.selectedProducts.filter((product) => {
           return product.id !== item.id
         })
         this.selectedProducts = newSelectedProducts
+        this.$emit('handleSelectMultiple', newSelectedProducts)
       } else {
         this.selectedProducts.push(item)
+        this.$emit('handleSelectMultiple', this.selectedProducts)
       }
+    },
+
+    decreaseQuantity(item) {
+      const products = this.addedProducts.map((product) => {
+        if (product.id === item.id) {
+          this.updatedProduct = { ...item }
+          return this.updatedProduct
+        }
+      })
+      localStorage.setItem('productsInCart', JSON.stringify(products))
+    },
+
+    handleIncreaseQuantity(item) {
+      const products = this.addedProducts.map((product) => {
+        if (product.id === item.id) {
+          this.updatedProduct = { ...item }
+          return this.updatedProduct
+        }
+      })
+      localStorage.setItem('productsInCart', JSON.stringify(products))
     }
   }
 }

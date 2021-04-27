@@ -1,6 +1,5 @@
 .fw-600 {
   font-weight: 600;
- 
 }
 
 h1 {
@@ -74,7 +73,7 @@ h1 {
 }
 
 .c-item__title a {
-  color: rgb(56, 56, 56)
+  color: rgb(56, 56, 56);
 }
 
 .c-item__ft {
@@ -82,8 +81,10 @@ h1 {
   align-items: center;
 }
 
-.c-item input {
-  width: 50px;
+.c-item input,
+.c-item span {
+  width: 40px;
+  text-align: center;
 }
 
 .cart-footer {
