@@ -11,10 +11,19 @@
           <div class="cart-header__action w-action">Action</div>
         </div>
         <div v-for="addedProduct in addedProducts" :key="addedProduct.id">
-          <cart-item :addedProduct="addedProduct" @handleOpenDeleteModal="handleOpenDeleteModal" />
+          <cart-item
+            :addedProduct="addedProduct"
+            @toggleDeleteModal="toggleDeleteModal"
+            @onDelete="onDeleteProduct"
+            @handleSelectProduct="onSelectProduct"
+          />
         </div>
       </b-list-group>
-      <confirmation-modal v-show="isModalShown" />
+      <confirmation-modal
+        :isShow="isModalShown"
+        @confirmDeleteProduct="confirmDelete"
+        @cancelDeleteProduct="cancelDelete"
+      />
     </div>
     <div v-else>No products in cart</div>
   </div>
@@ -32,23 +41,50 @@ export default {
   props: {
     addedProducts: {
       type: Array
+    },
+    handleDeleteInCart: {
+      type: Function
     }
   },
 
   data() {
     return {
-      isModalShown: false
+      isModalShown: false,
+      deletingProduct: {},
+      selectedProducts: []
     }
   },
 
   methods: {
-    handleOpenDeleteModal(item) {
-      console.log(item)
-    }
+    toggleDeleteModal() {
+      this.isModalShown = !this.isModalShown
+    },
 
-    // toggleDeleteModal() {
-    //   this.isModalShown = !this.isModalShown
-    // }
+    onDeleteProduct(item) {
+      this.deletingProduct = item
+    },
+
+    confirmDelete() {
+      this.$emit('handleDeleteInCart', this.deletingProduct)
+      this.isModalShown = false
+    },
+
+    cancelDelete() {
+      this.isModalShown = false
+    },
+
+    onSelectProduct(item) {
+      const hasId = this.selectedProducts.find(p => p.id === item.id)
+
+      if (hasId) {
+        const newSelectedProducts = this.selectedProducts.filter((product) => {
+          return product.id !== item.id
+        })
+        this.selectedProducts = newSelectedProducts
+      } else {
+        this.selectedProducts.push(item)
+      }
+    }
   }
 }
 </script>

@@ -3,17 +3,21 @@
   <div>cartitem</div>
 =======
   <b-list-group-item class="c-item">
-    <b-form-checkbox class="w-checkbox"></b-form-checkbox>
+    <b-form-checkbox
+      class="w-checkbox"
+      :checked="isChecked"
+      @change="toggleCheckbox($event, addedProduct)"
+    ></b-form-checkbox>
     <div class="w-product c-item__product">
       <div class="c-item__img">
         <a href="">
-          <b-img :src="addedProduct.image" :alt="addedProduct.title"></b-img>
+          <b-img :src="addedProduct.img" :alt="addedProduct.name"></b-img>
         </a>
       </div>
       <p class="c-item__title fw-600">
-        <a href="">{{ addedProduct.title }}</a>
+        <a href="">{{ addedProduct.name }}</a>
       </p>
-      <p>variation: {{ addedProduct.variation }}</p>
+      <p>variation: {{ addedProduct.variants }}</p>
     </div>
     <p class="c-item__uprice w-unit-price">${{ addedProduct.price }}</p>
     <p class="c-item__ft w-quantity">
@@ -46,14 +50,21 @@ export default {
     addedProduct: {
       type: Object
     },
-    handleDeleteOneProduct: {
+    onDelete: {
+      type: Function
+    },
+    toggleDeleteModal: {
+      type: Function
+    },
+    handleSelectProduct: {
       type: Function
     }
   },
 
   data() {
     return {
-      quantity: 0
+      quantity: 0,
+      isChecked: false
     }
   },
 
@@ -69,7 +80,13 @@ export default {
 
   methods: {
     onOpenDeleteModal(item) {
-      this.$emit('handleOpenDeleteModal', item)
+      this.$emit('toggleDeleteModal')
+      this.$emit('onDelete', item)
+    },
+
+    toggleCheckbox(e, item) {
+      this.isChecked = !this.isChecked
+      this.$emit('handleSelectProduct', item)
     },
 
     onDecreaseQuantity() {

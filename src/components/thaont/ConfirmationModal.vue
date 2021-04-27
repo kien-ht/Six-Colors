@@ -1,7 +1,7 @@
 <template>
-  <b-modal title="Delete product from cart" hide-footer>
+  <b-modal title="Delete product from cart" hide-footer v-model="isShow">
     Do you want to delete this product from cart?
-    <div>
+    <div class="c-modal__ft">
       <b-button variant="danger" @click="onYes">Delete</b-button>
       <b-button variant="outline-primary" @click="onNo">Cancel</b-button>
     </div>
@@ -11,13 +11,26 @@
 <script>
 export default {
   name: 'ConfirmationModal',
+
+  props: {
+    isShow: {
+      type: Boolean
+    },
+    confirmDeleteProduct: {
+      type: Function
+    },
+    cancelDeleteProduct: {
+      type: Function
+    }
+  },
+
   methods: {
     onYes() {
-      console.log(1)
+      this.$emit('confirmDeleteProduct')
     },
 
     onNo() {
-      console.log(2)
+      this.$emit('cancelDeleteProduct')
     }
   }
 }
