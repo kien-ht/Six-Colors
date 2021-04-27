@@ -24,4 +24,5 @@ export class PostsService extends BaseService {
       throw new ErrorWrapper(error, message)
     }
   }
+  
 }
