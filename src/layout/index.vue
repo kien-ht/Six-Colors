@@ -3,7 +3,7 @@
     <!-- <AppHeader></AppHeader> -->
     <div class="wrapper">
       <transition name="fade">
-        <router-view></router-view>
+        <router-view />
       </transition>
     </div>
     <!-- <AppFooter></AppFooter> -->

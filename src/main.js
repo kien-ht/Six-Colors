@@ -14,6 +14,12 @@ import './thirdParty'
 import './scss/style.scss'
 import './assets/fonts/bebasneue.css'
 
+import { BootstrapVue } from 'bootstrap-vue'
+import VueSwal from 'vue-swal'
+ 
+Vue.use(VueSwal)
+Vue.use(BootstrapVue)
+
 Vue.config.productionTip = false
 
 new Vue({

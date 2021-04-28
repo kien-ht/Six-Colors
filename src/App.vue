@@ -1,16 +1,21 @@
 <template>
   <div>
-      <h1>Hello wolrd</h1>
+    <Nav/>
+  <router-view />
   </div>
 
 </template>
 
 <script>
+import Nav from './components/ngoc/nav'
 export default {
+  name: 'App',
+  components: {
+    Nav
+  }
 
 }
 </script>
 
 <style>
-
 </style>
