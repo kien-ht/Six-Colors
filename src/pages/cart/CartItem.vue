@@ -17,7 +17,12 @@
       <p class="c-item__title fw-600">
         <a href="">{{ addedProduct.name }}</a>
       </p>
-      <p>variation: {{ addedProduct.variants }}</p>
+      <div class="c-item__variants">
+        <p class="c-item__variants__item" v-for="(variant, index) in addedProduct.variants" :key="index">
+          <template v-if="variant.name === 'size'">Size: {{ variant.option }}</template>
+          <template v-if="variant.name === 'color'">Color: {{ variant.option }}</template>
+        </p>
+      </div>
     </div>
     <p class="c-item__uprice w-unit-price">${{ addedProduct.price }}</p>
     <p class="c-item__ft w-quantity">
@@ -50,15 +55,6 @@ export default {
   props: {
     addedProduct: {
       type: Object
-    },
-    onDelete: {
-      type: Function
-    },
-    toggleDeleteModal: {
-      type: Function
-    },
-    handleSelectProduct: {
-      type: Function
     }
   },
 

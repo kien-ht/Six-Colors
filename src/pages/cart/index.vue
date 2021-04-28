@@ -18,7 +18,7 @@
       </div>
     </div>
     <confirmation-modal
-      :isShow="isModalShown"
+      ref="confirmDeleteBulkModal"
       @confirmDeleteProduct="confirmDeleteBulk"
       @cancelDeleteProduct="cancelDeleteBulk"
     />
@@ -37,7 +37,6 @@ export default {
   data() {
     return {
       addedProducts: [],
-      isModalShown: false,
       deletingProducts: [],
       isBtnDeleteBulkDisabled: true
     }
@@ -81,7 +80,7 @@ export default {
     },
 
     toggleDeleteBulkModal() {
-      this.isModalShown = !this.isModalShown
+      this.$refs.confirmDeleteBulkModal.isShow = !this.$refs.confirmDeleteBulkModal.isShow
     },
 
     handleSelectMulti(arr) {
@@ -101,11 +100,11 @@ export default {
       })
       this.addedProducts = remainProducts
       localStorage.setItem('productsInCart', JSON.stringify(remainProducts))
-      this.isModalShown = false
+      this.$refs.confirmDeleteBulkModal.isShow = false
     },
 
     cancelDeleteBulk() {
-      this.isModalShown = false
+      this.$refs.confirmDeleteBulkModal.isShow = false
     }
   }
 }

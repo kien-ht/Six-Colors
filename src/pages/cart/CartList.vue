@@ -15,13 +15,14 @@
             :addedProduct="addedProduct"
             @toggleDeleteModal="toggleDeleteModal"
             @onDelete="onDeleteProduct"
-            @handleSelectProduct="onSelectProduct"
+            @handleSelectProduct="selectProduct"
             @handleDecreaseQuantity="decreaseQuantity"
+            @handleIncreaseQuantity="increaseQuantity"
           />
         </div>
       </b-list-group>
       <confirmation-modal
-        :isShow="isModalShown"
+        ref="confirmModal"
         @confirmDeleteProduct="confirmDelete"
         @cancelDeleteProduct="cancelDelete"
       />
@@ -42,27 +43,19 @@ export default {
   props: {
     addedProducts: {
       type: Array
-    },
-    handleDeleteInCart: {
-      type: Function
-    },
-    handleSelectMultiple: {
-      type: Function
     }
   },
 
   data() {
     return {
-      isModalShown: false,
       deletingProduct: {},
-      selectedProducts: [],
-      updatedProduct: {}
+      selectedProducts: []
     }
   },
 
   methods: {
     toggleDeleteModal() {
-      this.isModalShown = !this.isModalShown
+      this.$refs.confirmModal.isShow = !this.$refs.confirmModal.isShow
     },
 
     onDeleteProduct(item) {
@@ -71,14 +64,14 @@ export default {
 
     confirmDelete() {
       this.$emit('handleDeleteInCart', this.deletingProduct)
-      this.isModalShown = false
+      this.$refs.confirmModal.isShow = false
     },
 
     cancelDelete() {
-      this.isModalShown = false
+      this.$refs.confirmModal.isShow = false
     },
 
-    onSelectProduct(item) {
+    selectProduct(item) {
       const hasId = this.selectedProducts.find((p) => p.id === item.id)
 
       if (hasId) {
@@ -94,23 +87,25 @@ export default {
     },
 
     decreaseQuantity(item) {
-      const products = this.addedProducts.map((product) => {
+      const newProducts = this.addedProducts.map((product) => {
         if (product.id === item.id) {
-          this.updatedProduct = { ...item }
-          return this.updatedProduct
+          const updatedTask = { ...item }
+          return updatedTask
         }
+        return product
       })
-      localStorage.setItem('productsInCart', JSON.stringify(products))
+      localStorage.setItem('productsInCart', JSON.stringify(newProducts))
     },
 
-    handleIncreaseQuantity(item) {
-      const products = this.addedProducts.map((product) => {
+    increaseQuantity(item) {
+      const newProducts = this.addedProducts.map((product) => {
         if (product.id === item.id) {
-          this.updatedProduct = { ...item }
-          return this.updatedProduct
+          const updatedTask = { ...item }
+          return updatedTask
         }
+        return product
       })
-      localStorage.setItem('productsInCart', JSON.stringify(products))
+      localStorage.setItem('productsInCart', JSON.stringify(newProducts))
     }
   }
 }
