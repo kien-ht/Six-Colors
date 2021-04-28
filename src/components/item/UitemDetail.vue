@@ -159,17 +159,21 @@ export default {
         }
       }
 
-      console.log(this.item.selectedVariant)
+      console.log("this is selectedVariant", this.item.selectedVariant);
     },
     handlerAddCart() {
-      if (this.item.quantity > this.item.quantityInStock) {
+      if (
+        this.item.quantity > this.item.quantityInStock ||
+        this.item.quantity === 0
+      ) {
         console.log("Vượt quá số lượng cho phép");
         // nên hiển thị một popup cho người dùng
+      } else {
+        console.log(this.selectedVariant);
+        let productSelected = Object.assign(this.item, this.selectedVariant);
+        console.log("this is productSelected", productSelected);      
+        return productSelected;
       }
-      console.log(this.selectedVariant);
-      let productSelected = Object.assign(this.item, this.selectedVariant);
-      console.log(productSelected);
-      this.item.quantity = 0;
     },
     getIndex(nameOption) {
       for (let i = 0; i < this.item.selectedVariant.length; i++) {
