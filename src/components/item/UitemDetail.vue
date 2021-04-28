@@ -43,35 +43,43 @@
               <strong>(87 votes)</strong>
             </p>
             <h5 class="sizes">
-              Sizes:
               <span>
                 <ul class="variantes">
                   <li v-for="(v, i) in item.variants" :key="i">
+                    {{ v.name }}
                     <button
                       id="btn-size"
                       type="button"
                       class="btn btn-primary"
                       v-for="(s, index) in v.options"
                       :key="index"
-                      @click="handlerClickButton(s)"
+                      @click="handlerClickButton(s, v.name)"
                     >
                       {{ s }}
                     </button>
                   </li>
+                  <br />
+                  <div>
+                    <div class="selected-quantity">
+                      <input type="number" v-model="item.quantity" />
+                    </div>
+                  </div>
+                  <br />
+                  <div class="action">
+                    <button
+                      class="add-to-cart btn btn-default"
+                      type="button"
+                      @click="handlerAddCart()"
+                    >
+                      add to cart
+                    </button>
+                    <button class="like btn btn-default" type="button">
+                      <span class="fa fa-heart"></span>
+                    </button>
+                  </div>
                 </ul>
               </span>
             </h5>
-            <div class="amout">
-              <input type="number" :value='{{amount}}'/>
-            </div>
-            <div class="action">
-              <button class="add-to-cart btn btn-default" type="button">
-                add to cart
-              </button>
-              <button class="like btn btn-default" type="button">
-                <span class="fa fa-heart"></span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -112,30 +120,69 @@ export default {
         quantityInStock: 0,
         rates: [],
         createdAt: "",
-      },
-      props: {
-        amout: 0,
+        quantity: 0,
+        selectedVariant: [],
       },
     };
   },
 
   methods: {
-    async getUser() {
+    async getProduct() {
       try {
-        const response = await baseInstance.get("/api/items/3");
+        const response = await baseInstance.get("/api/items/2");
         console.log("get User");
         this.item = Object.assign(this.item, response.data.data);
       } catch (error) {
         console.error(error);
       }
     },
-    handlerClickButton(s) {
-      console.log(s);
+    handlerClickButton(s, nameOption) {
+      // xử lý dữ liệu khi khách chọn 1 sản phẩm
+
+      if (this.item.selectedVariant.length == 0) {
+        this.item.selectedVariant.push({
+          name: nameOption,
+          selectedOption: s,
+        });
+      } else {
+        let index = this.getIndex(nameOption);
+        if (index < 0) {
+          this.item.selectedVariant.push({
+            name: nameOption,
+            selectedOption: s,
+          });
+        } else {
+          this.item.selectedVariant[index] = {
+            name: nameOption,
+            selectedOption: s,
+          };
+        }
+      }
+
+      console.log(this.item.selectedVariant)
+    },
+    handlerAddCart() {
+      if (this.item.quantity > this.item.quantityInStock) {
+        console.log("Vượt quá số lượng cho phép");
+        // nên hiển thị một popup cho người dùng
+      }
+      console.log(this.selectedVariant);
+      let productSelected = Object.assign(this.item, this.selectedVariant);
+      console.log(productSelected);
+      this.item.quantity = 0;
+    },
+    getIndex(nameOption) {
+      for (let i = 0; i < this.item.selectedVariant.length; i++) {
+        if (this.item.selectedVariant[i].name === nameOption) {
+          return i;
+        }
+      }
+      return -1;
     },
   },
 
   created() {
-    this.getUser();
+    this.getProduct();
   },
 };
 </script>
