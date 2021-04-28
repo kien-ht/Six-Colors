@@ -4,8 +4,10 @@ import AppLayout from './layout/index.vue'
 // import App from './App.vue'
 import router from './router'
 import store from './store'
-// import 'bootstrap'
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import './mixins'
 import './plugins'
@@ -14,11 +16,8 @@ import './thirdParty'
 import './scss/style.scss'
 import './assets/fonts/bebasneue.css'
 
-import { BootstrapVue } from 'bootstrap-vue'
-import VueSwal from 'vue-swal'
- 
-Vue.use(VueSwal)
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 Vue.config.productionTip = false
 
