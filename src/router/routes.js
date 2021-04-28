@@ -11,6 +11,8 @@ import CartPage from '../pages/cart'
 import List from '@/components/cuc/List.vue'
 import ListItem from '@/components/cuc/ListItem.vue'
 
+import ListItem from '../components/cuc/ListItem.vue'
+import OrderTracking from '../components/hang/OrderTracking.vue'
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
 import Checkout from '../components/ngoc/checkout.vue'
@@ -59,6 +61,8 @@ export const routes = [
   {
     path: '/list',
     component: List,
+    path: '/order-tracking/:id',
+    component: OrderTracking,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
 
@@ -68,5 +72,6 @@ export const routes = [
     name: 'cart',
     component: CartPage,
     meta: { title: `${DOMAIN_TITLE} | cart` }
-  }
+  },
+  { path: '/cart', name: 'Cart', component: Cart, meta: { title: `${DOMAIN_TITLE} | Cart` } }
 ]
