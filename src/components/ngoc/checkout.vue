@@ -160,8 +160,9 @@ export default {
           if (response.data.success) {
             // eslint-disable-next-line no-undef
             localStorage.setItem('inforUser', JSON.stringify(response.data.data))
-            swal('Good job!', 'Đặt thành công', 'success').then((success) => {
+            this.$swal('Good job!', 'Đặt thành công', 'success').then((success) => {
               if (success) {
+                localStorage.removeItem('productsInCart')
                 this.changeLocation('/cart')
               }
             })
