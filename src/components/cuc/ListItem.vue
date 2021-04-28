@@ -1,9 +1,6 @@
 <template>
   <div id='list-item'> 
-      
-
-      
-      
+   
  <nav class="navbar navbar-light bg-light">
                 
 <div>
@@ -54,11 +51,6 @@
           </div>
   </div>
 
-
-
-
-
-
 </template>
 
 <script lang='js'>
@@ -96,27 +88,12 @@ export default {
 
         },
         getListProduct(){
-            this.totalPage=Math.ceil(this.list.length/this.quantity)
-            let num=this.quantity*(this.page-1)
-            if(this.listProduct.length==0){
-                for (let i = 0; i <this.quantity; i++) {
-                  
-                if(i<this.list.length-num){
-                this.listProduct.push(this.list[num+i])
-                 }
-                }
-                return;
-            }else{
-                for (let i = 0; i <this.quantity; i++) {
-                    if(i<this.list.length-num){
-                this.listProduct.splice(i,1,this.list[num+i])
-                    }else{
-                        if( this.listProduct.length!=1){
-                         this.listProduct.pop()
-                        }                      
-                    }                
-                }
-            }   
+            this.totalPage=Math.ceil(this.list.length/this.quantity)   
+            console.log('this.page -1', this.page -1);
+            console.log('this.quantity', this.quantity);
+            const arr = this.list.slice((this.page -1)*this.quantity, this.quantity *this.page)
+            this.listProduct =arr
+               
         },
       
         next(){
@@ -137,15 +114,11 @@ export default {
         async getList () {
             try {
                 const response = await CucService.get('/api/items')
-                this.list=response.data
-                this.listFilter=response.data
-                
+                this.list=response.data      
                 let arr = []
                 this.list.forEach(element => {
                 let arrRate=element.rates.map(el=>el.rate);
                 let tb = Math.round((arrRate.reduce((accumulator, currentValue) => accumulator + currentValue)/arrRate.length)*10)/10
-                   
-
                     const item = {
                         ...element,
                         averageRate:tb
@@ -154,8 +127,9 @@ export default {
                      
                 });
                 this.list = arr
+                this.listFilter=arr
                 this.getListProduct()
-                console.log('this.list', this.list)
+                console.log('this.listFilter', this.listFilter)
                 
             } catch (err) {
                 console.log(err.message)
@@ -182,11 +156,12 @@ export default {
         
             }
             this.list = arr
+            console.log('arr',this.list);
             this.getListProduct()
         }
     },
 
-    mounted(){
+    created(){
         this.getList()
     },
     
@@ -196,7 +171,7 @@ export default {
 <style scoped>
 #list-item {
 margin-top: 20px;
-background-image: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-fantasy-color-gradient-print-ad-image_162825.jpg');
+background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-RxWOfdMDWFK4I9fgIDowJyIB3xZKjrgTubraCbl1wVVAtrYFZzseN9CpS4em-b5I5EQ&usqp=CAU');
 }
 .card-title {
     font-weight: bold;
