@@ -95,19 +95,19 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     ListItem
   },
-  data () {
+  data() {
     return {
       selected: '1',
       dismissSecs: 3,
       save: false,
       dismissCountDown: 0,
       change: true,
-      address: User.address,
-      name: User.userName,
+      address: User.address ? User.address : '',
+      name: User.userName ? User.userName : '',
       phone: User.phoneNumber ? User.phoneNumber : '',
       note: '',
       time: '',
-      money: localStorage.getItem('TotalMoney'),
+      money: localStorage.getItem('TotalMoney') ? localStorage.getItem('TotalMoney') : 0,
       options: [
         {
           value: '1',
@@ -122,14 +122,13 @@ export default {
   },
  
   methods: {
-    changeLocation (link) {
+    changeLocation(link) {
       window.location = link
     },
-    Comback () {
-      console.log(this.time)
+    Comback() {
       this.change = !this.change
     },
-    SaveThongTinTT () {
+    SaveThongTinTT() {
       const file = {
         totalAmount: this.money,
         recipientName: this.name,
@@ -161,7 +160,7 @@ export default {
           if (response.data.success) {
             // eslint-disable-next-line no-undef
             localStorage.setItem('inforUser', JSON.stringify(response.data.data))
-            this.$swal('Good job!', 'Đặt thành công', 'success').then((success) => {
+            swal('Good job!', 'Đặt thành công', 'success').then((success) => {
               if (success) {
                 this.changeLocation('/cart')
               }
@@ -172,7 +171,7 @@ export default {
           console.log(error)
         })
     },
-    countDownChanged (dismissCountDown) {
+    countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown
     }
   
