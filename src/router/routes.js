@@ -53,6 +53,7 @@ export const routes = [
   },
   {
     path: '/list-item',
+    name:'list-item',
     component: ListItem,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
