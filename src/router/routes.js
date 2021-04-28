@@ -58,7 +58,7 @@ export const routes = [
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
   {
-    path: '/list',
+
     component: List,
     path: '/order-tracking/:id',
     component: OrderTracking,
