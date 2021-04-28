@@ -3,11 +3,16 @@
     <div class="main">
       <div class="header">Вход</div>
       <div class="content">
-        <label for="email">E-mail</label>
-        <input id="email" type="text" v-model="email">
-
-        <label for="password">password</label>
-        <input id="password" type="password" v-model="password" @keyup.enter="makeLogin">
+        <b-row>
+          <b-col md='4'>  <label for="email">E-mail</label></b-col>
+            <b-col md='8'><input id="email" type="text" v-model="email"></b-col>
+        </b-row>
+      
+         <b-row>
+          <b-col md='4'> <label for="password">password</label></b-col>
+            <b-col md='8'> <input id="password" type="password" v-model="password" @keyup.enter="makeLogin"></b-col>
+        </b-row>
+       
       </div>
       <div class="buttons">
         <button @click="makeLogin">login</button>
@@ -21,30 +26,55 @@
 </template>
 
 <script>
-import { AuthService } from '@/services/auth.service'
-
+// import { AuthService } from '@/services/auth.service'
+import axios from 'axios'
 export default {
   name: 'Login',
   data () {
     return {
-      email: 'user@user.com',
-      password: '123456',
+      email: '',
+      password: '',
       error: ''
     }
   },
 
   methods: {
-    async makeLogin () {
-      try {
-        await AuthService.makeLogin({ email: this.email, password: this.password })
-        this.error = ''
-        await this.$store.dispatch('user/getCurrent')
-        await this.$router.push('profile')
-      } catch (error) {
-        this.$store.commit('toast/NEW', { type: 'error', message: error.message })
-        this.error = error.status === 404 ? 'User with same email not found' : error.message
+    changeLocation (link) {
+      window.location = link
+    },
+    makeLogin () {
+      if (this.email === '') {
+        // eslint-disable-next-line no-undef
+        swal('Email không được bỏ trống')
+      } else {
+        axios.post('http://192.168.10.245:3030/api/users/login', {
+          email: this.email,
+          password: this.password
+        })
+          .then((response) => {
+            if (response.data.success) {
+              // eslint-disable-next-line no-undef
+              localStorage.setItem('token', response.data.data.token)
+              localStorage.setItem('inforUser', JSON.stringify(response.data.data))
+              this.changeLocation('/Checkout')
+            // eslint-disable-next-line no-undef
+            } else { swal(response.data.message) }
+          }, (error) => {
+            console.log(error)
+          })
       }
     }
+    // async makeLogin () {
+    //   try {
+    //     await AuthService.makeLogin({ email: this.email, password: this.password })
+    //     this.error = ''
+    //     await this.$store.dispatch('user/getCurrent')
+    //     await this.$router.push('profile')
+    //   } catch (error) {
+    //     this.$store.commit('toast/NEW', { type: 'error', message: error.message })
+    //     this.error = error.status === 404 ? 'User with same email not found' : error.message
+    //   }
+    // }
   }
 }
 </script>

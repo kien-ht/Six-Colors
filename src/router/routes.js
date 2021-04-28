@@ -10,7 +10,8 @@ import notFoundPage from '../pages/NotFound.vue'
 
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
-
+import Checkout from '../components/ngoc/checkout.vue'
+import Cart from '../components/ngoc/cart.vue'
 export const routes = [
   {
     path: '/',
@@ -47,5 +48,8 @@ export const routes = [
     path: '*',
     component: notFoundPage,
     meta: { title: `${DOMAIN_TITLE} | not found` }
-  }
+  },
+
+  { path: '/Checkout', name: 'Checkout', component: Checkout, meta: { title: `${DOMAIN_TITLE} | Checkout` } },
+  { path: '/cart', name: 'Cart', component: Cart, meta: { title: `${DOMAIN_TITLE} | Cart` } }
 ]

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-// import AppLayout from './layout/index.vue'
-import App from './App.vue'
+import AppLayout from './layout/index.vue'
+// import App from './App.vue'
 import router from './router'
 import store from './store'
 
@@ -11,6 +11,12 @@ import './thirdParty'
 
 import './scss/style.scss'
 import './assets/fonts/bebasneue.css'
+
+import { BootstrapVue } from 'bootstrap-vue'
+import VueSwal from 'vue-swal'
+ 
+Vue.use(VueSwal)
+Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
 
@@ -26,5 +32,5 @@ new Vue({
   beforeDestroy () {
     window.removeEventListener('resize', () => store.commit('dom/SET_WINDOW_WIDTH', window.innerWidth))
   },
-  render: h => h(App)
+  render: h => h(AppLayout)
 }).$mount('#app')
