@@ -67,7 +67,6 @@
 
 <script>
 import DungService from '@/services/dung.services'
-import user from '../../store/modules/user'
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 export default {
     name: 'Register',
@@ -157,25 +156,14 @@ export default {
         },
         onSubmit (event) {
             event.preventDefault()
-            // let user = Object.assign({}, this.user)
             this.makeRegister()
-            // console.log('user: --',user)
-            // console.log('user: this',this.user)
             this.resetUser()
 
         }
   },
   mounted () {
-    //   let element = this.$el.querySelector('#passwordcheck')
-    //     element.addEventListener('blur', () => {
-    //         if (!this.isValid('passwordChck')) {
-    //             element.classList.add('invalid')
-    //         } else {
-    //             element.classList.remove('invalid')
-    //         }
-    //     })  
+    
   }
-
 }
 </script>
 

@@ -9,10 +9,13 @@ import login from '@/components/dung/Login.vue'
 import Register from '@/components/dung/Register.vue'
 import notFoundPage from '../pages/NotFound.vue'
 import UpdateUser from '@/components/dung/UpdateUser.vue'
-
+import CartPage from '../pages/cart'
+import List from '@/components/cuc/List.vue'
+import ListItem from '../components/cuc/ListItem.vue'
+import OrderTracking from '../components/hang/OrderTracking.vue'
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
-
+import Checkout from '../components/ngoc/checkout.vue'
 export const routes = [
   {
     path: '/',
@@ -48,5 +51,24 @@ export const routes = [
     path: '*',
     component: notFoundPage,
     meta: { title: `${DOMAIN_TITLE} | not found` }
-  }
-]
+  },
+  {
+    path: '/list-item',
+    component: ListItem,
+    meta: { title: `${DOMAIN_TITLE} | not found` }
+  },
+  {
+    path: '/list',
+    component: List,
+    path: '/order-tracking/:id',
+    component: OrderTracking,
+    meta: { title: `${DOMAIN_TITLE} | not found` }
+  },
+
+  { path: '/Checkout', name: 'Checkout', component: Checkout, meta: { title: `${DOMAIN_TITLE} | Checkout` } },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartPage,
+    meta: { title: `${DOMAIN_TITLE} | cart` }
+  },]

@@ -22,4 +22,4 @@ export default {
     AppFooter
   }
 }
-</script>s
+</script>
