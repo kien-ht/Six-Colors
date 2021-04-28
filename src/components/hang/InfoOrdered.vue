@@ -80,9 +80,8 @@ export default {
     border: 3px solid #2dc258;
     border-radius: 100%;
     margin: auto;
-    line-height: 60px;
+    line-height: 50px;
     text-align: center;
-    padding-top: 11px;
     margin-bottom: 10px;
     position: relative;
 }
