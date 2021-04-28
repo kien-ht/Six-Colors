@@ -123,7 +123,7 @@ export default {
  
   methods: {
     changeLocation(link) {
-      window.location = link
+      this.$router.push(link)
     },
     Comback() {
       this.change = !this.change
@@ -132,7 +132,7 @@ export default {
       const file = {
         totalAmount: this.money,
         recipientName: this.name,
-        orderId: Math.random(),
+        orderId: (Math.floor(Math.random() * 10000)).toString(36) + Date.now(),
         recipientPhone: this.phone,
         recipientAddress: this.note,
         additionalNote: this.note,
@@ -163,7 +163,7 @@ export default {
             this.$swal('Good job!', 'Đặt thành công', 'success').then((success) => {
               if (success) {
                 localStorage.removeItem('productsInCart')
-                this.changeLocation('/cart')
+                this.changeLocation(`/order-tracking/${file.orderId}`)
               }
             })
             // eslint-disable-next-line no-undef
