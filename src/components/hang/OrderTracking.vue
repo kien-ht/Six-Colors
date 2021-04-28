@@ -54,8 +54,7 @@ export default {
   },
   created() {
     
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJudm52MzhmaHNwMTYxOTUwNjI3NzU3NyIsImlhdCI6MTYxOTUxNzE2OSwiZXhwIjoxNjE5NjAzNTY5fQ.E3qGj8sXEg_8akyGlzZohVAUPecfZ6yCs2hhvJOYpUo";
+    const token = localStorage.getItem('token')
       const urlServer = "http://192.168.10.245:3030/";
     this.token =token
     this.urlServer =urlServer
