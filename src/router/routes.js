@@ -9,8 +9,6 @@ import loginPage from '../pages/Login.vue'
 import notFoundPage from '../pages/NotFound.vue'
 import CartPage from '../pages/cart'
 import List from '@/components/cuc/List.vue'
-import ListItem from '@/components/cuc/ListItem.vue'
-
 import ListItem from '../components/cuc/ListItem.vue'
 import OrderTracking from '../components/hang/OrderTracking.vue'
 import { routePropResolver } from './util'
@@ -72,6 +70,4 @@ export const routes = [
     name: 'cart',
     component: CartPage,
     meta: { title: `${DOMAIN_TITLE} | cart` }
-  },
-  { path: '/cart', name: 'Cart', component: Cart, meta: { title: `${DOMAIN_TITLE} | Cart` } }
-]
+  },]
