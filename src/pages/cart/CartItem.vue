@@ -1,7 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div>cartitem</div>
-=======
   <b-list-group-item class="c-item">
     <b-form-checkbox
       class="w-checkbox"
@@ -36,20 +33,10 @@
       <b-button variant="danger" @click="onOpenDeleteModal(addedProduct)">x</b-button>
     </div>
   </b-list-group-item>
->>>>>>> 32f9fab (add component in cart component)
 </template>
 
 <script>
 export default {
-<<<<<<< HEAD
-  name: 'CartItem'
-}
-</script>
-
-<style>
-
-</style>
-=======
   name: 'CartItem',
 
   props: {
@@ -106,4 +93,3 @@ export default {
   }
 }
 </script>
->>>>>>> 32f9fab (add component in cart component)

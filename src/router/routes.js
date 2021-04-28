@@ -8,6 +8,8 @@ import newsPage from '../pages/news/NewsPage.vue'
 import loginPage from '../pages/Login.vue'
 import notFoundPage from '../pages/NotFound.vue'
 import CartPage from '../pages/cart'
+import List from '@/components/cuc/List.vue'
+import ListItem from '@/components/cuc/ListItem.vue'
 
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
