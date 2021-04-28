@@ -7,9 +7,13 @@ import homePage from '../pages/Home.vue'
 import newsPage from '../pages/news/NewsPage.vue'
 import loginPage from '../pages/Login.vue'
 import notFoundPage from '../pages/NotFound.vue'
+import UitemDetail from '@/components/item/UitemDetail'
+import ListItem from '../components/cuc/ListItem.vue'
+import List from '../components/cuc/List.vue'
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
-import UitemDetail from '@/components/item/UitemDetail'
+import Checkout from '../components/ngoc/checkout.vue'
+import Cart from '../components/ngoc/cart.vue'
 export const routes = [
   {
     path: '/',
@@ -52,5 +56,18 @@ export const routes = [
     path: '*',
     component: notFoundPage,
     meta: { title: `${DOMAIN_TITLE} | not found` }
-  }
+  },
+  {
+    path: '/list-item',
+    component: ListItem,
+    meta: { title: `${DOMAIN_TITLE} | not found` }
+  },
+  {
+    path: '/list',
+    component: List,
+    meta: { title: `${DOMAIN_TITLE} | not found` }
+  },
+
+  { path: '/Checkout', name: 'Checkout', component: Checkout, meta: { title: `${DOMAIN_TITLE} | Checkout` } },
+  { path: '/cart', name: 'Cart', component: Cart, meta: { title: `${DOMAIN_TITLE} | Cart` } }
 ]
