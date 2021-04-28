@@ -1,7 +1,6 @@
 import Vue from 'vue'
-
-// import AppLayout from './layout/index.vue'
-import App from './App.vue'
+import AppLayout from './layout/index.vue'
+// import App from './App.vue'
 import router from './router'
 import store from './store'
 
@@ -26,5 +25,5 @@ new Vue({
   beforeDestroy () {
     window.removeEventListener('resize', () => store.commit('dom/SET_WINDOW_WIDTH', window.innerWidth))
   },
-  render: h => h(App)
+  render: h => h(AppLayout)
 }).$mount('#app')

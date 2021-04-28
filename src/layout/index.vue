@@ -7,6 +7,7 @@
       </transition>
     </div>
     <AppFooter></AppFooter>
+    
   </div>
 
 </template>
@@ -22,4 +23,4 @@ export default {
     AppFooter
   }
 }
-</script>s
+</script>

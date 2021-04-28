@@ -7,16 +7,21 @@ import homePage from '../pages/Home.vue'
 import newsPage from '../pages/news/NewsPage.vue'
 import loginPage from '../pages/Login.vue'
 import notFoundPage from '../pages/NotFound.vue'
-
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
-
+import UitemDetail from '@/components/item/UitemDetail'
 export const routes = [
   {
     path: '/',
     name: 'index',
     component: homePage,
     meta: { title: `${DOMAIN_TITLE} | home` }
+  },
+  {
+    path: '/uitem-detail',
+    name: 'UitemDetail',
+    component: UitemDetail,
+    meta: { title: `${DOMAIN_TITLE} | UitemDetail` }
   },
   {
     path: '/news',
