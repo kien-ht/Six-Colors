@@ -150,7 +150,7 @@ export default {
                     arr = this.listFilter.filter((item)=> item.price>600000)
                     break;
                 default:
-                    arr =this.getList()
+                    arr =this.listFilter
 
                     break;
         
