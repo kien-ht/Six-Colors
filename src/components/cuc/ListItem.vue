@@ -81,7 +81,7 @@ export default {
                  this.getList();
             }
             else{  
-                const arr = this.list.filter((item)=> item.name.includes(this.search))
+                const arr = this.listFilter.filter((item)=> item.name.includes(this.search))
             this.list = arr
             this.getListProduct()
             }
