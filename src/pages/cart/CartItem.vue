@@ -15,9 +15,8 @@
         <a href="">{{ addedProduct.name }}</a>
       </p>
       <div class="c-item__variants">
-        <p class="c-item__variants__item" v-for="(variant, index) in addedProduct.variants" :key="index">
-          <template v-if="variant.name === 'size'">Size: {{ variant.option }}</template>
-          <template v-if="variant.name === 'color'">Color: {{ variant.option }}</template>
+        <p class="c-item__variants__item" v-for="(variant, index) in addedProduct.selectedVariant" :key="index">
+          {{ variant.name }}: {{ variant.selectedOption }}
         </p>
       </div>
     </div>

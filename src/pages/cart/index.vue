@@ -14,7 +14,7 @@
       </div>
       <div class="cart-footer__right">
         <p class="fw-600">Total price: ${{ getTotalPrice }}</p>
-        <b-button variant="primary">Checkout</b-button>
+        <b-button variant="primary" @click="$router.push('/checkout')">Checkout</b-button>
       </div>
     </div>
     <confirmation-modal
@@ -28,7 +28,6 @@
 <script>
 import ConfirmationModal from '../../components/thaont/ConfirmationModal.vue'
 import CartList from './CartList.vue'
-import dummyProducts from '../../json/products.json'
 export default {
   components: { CartList, ConfirmationModal },
 
@@ -66,7 +65,6 @@ export default {
           console.log(error)
         }
       } else {
-        initialAddedProducts = dummyProducts
         localStorage.setItem('productsInCart', JSON.stringify(initialAddedProducts))
       }
     },
