@@ -1,17 +1,15 @@
 <template>
   <div id='list-item'> 
    
- <nav class="navbar navbar-light bg-light">
+ <nav nav class="navbar navbar-light">
                 
 <div>
     <b class="home" @click="filterPrice(0)"><i class="fas fa-home"></i></b>
-  <b-dropdown type='submit' id="dropdown-1" text="Price Filter"  @click="test(1)" class="m-md-2">
+  <b-dropdown type='submit'  text="Price Filter"  @click="test(1)" class="m-md-2 btn">
     <b-dropdown-item @click="filterPrice(1)" > Dưới 100000</b-dropdown-item>
     <b-dropdown-item  @click="filterPrice(2)"> 100000 - 600000 </b-dropdown-item>
     <b-dropdown-item  @click="filterPrice(3)"> Trên 600000 </b-dropdown-item>
-   
   </b-dropdown>
-  
 </div>
               <div >
                   <div class="row">
@@ -92,8 +90,7 @@ export default {
         },
         getListProduct(){
             this.totalPage=Math.ceil(this.list.length/this.quantity)   
-            console.log('this.page -1', this.page -1);
-            console.log('this.quantity', this.quantity);
+      
             const arr = this.list.slice((this.page -1)*this.quantity, this.quantity *this.page)
             this.listProduct =arr
                
@@ -132,7 +129,6 @@ export default {
                 this.list = arr
                 this.listFilter=arr
                 this.getListProduct()
-                console.log('this.listFilter', this.listFilter)
                 
             } catch (err) {
                 console.log(err.message)
@@ -141,7 +137,6 @@ export default {
         filterPrice(value){
             let arr;
             this.page=1
-            console.log('value', value)
             switch (value) {
                 case 1:
                     arr = this.listFilter.filter((item)=> item.price<100000)
@@ -159,7 +154,6 @@ export default {
         
             }
             this.list = arr
-            console.log('arr',this.list);
             this.getListProduct()
         }
     },
@@ -177,7 +171,9 @@ export default {
 <style scoped>
 #list-item {
 margin-top: 20px;
-background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-RxWOfdMDWFK4I9fgIDowJyIB3xZKjrgTubraCbl1wVVAtrYFZzseN9CpS4em-b5I5EQ&usqp=CAU');
+background-image: url("https://i.pinimg.com/originals/e0/eb/c0/e0ebc00f4f332f2b0d1ea40992579a44.jpg");
+    background-size: cover
+
 }
 .card-title {
     font-weight: bold;
@@ -187,15 +183,18 @@ background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-R
 }
 nav{
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    background-color:rgb(180, 45, 68);
+   
+
 }
 .card-body{
 border: 1px,solid,black;
 }
 .home{
-    font-size: 30px;
-    margin-right: 40px;
-    color:teal;
+    font-size: 35px;
+    margin-right: 90px;
+    color:lightgray;
 }
 #page{
     margin-left: 10px;
