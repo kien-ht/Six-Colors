@@ -171,8 +171,13 @@ export default {
       } else {
         console.log(this.selectedVariant);
         let productSelected = Object.assign(this.item, this.selectedVariant);
-        console.log("this is productSelected", productSelected);      
-        return productSelected;
+        console.log("this is productSelected", productSelected);
+        let order = JSON.parse(localStorage.getItem("productsInCart")) || []
+
+        order.push(productSelected)
+
+        localStorage.setItem('productsInCart', JSON.stringify(order))
+
       }
     },
     getIndex(nameOption) {
