@@ -127,9 +127,9 @@ export default {
   },
 
   methods: {
-    async getProduct() {
+    async getProduct(id) {
       try {
-        const response = await baseInstance.get("/api/items/2");
+        const response = await baseInstance.get(`/api/items/${id}`);
         console.log("get User");
         this.item = Object.assign(this.item, response.data.data);
       } catch (error) {
@@ -186,7 +186,7 @@ export default {
   },
 
   created() {
-    this.getProduct();
+    this.getProduct(this.$route.params.id);
   },
 };
 </script>

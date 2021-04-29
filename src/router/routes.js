@@ -22,7 +22,8 @@ export const routes = [
     meta: { title: `${DOMAIN_TITLE} | home` }
   },
   {
-    path: '/uitem-detail',
+    path: '/uitem-detail/:id',
+    props: true,
     name: 'UitemDetail',
     component: UitemDetail,
     meta: { title: `${DOMAIN_TITLE} | UitemDetail` }
