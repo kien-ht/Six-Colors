@@ -8,7 +8,7 @@ import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueSwal from 'vue-swal'
+// import VueSwal from 'vue-swal'
 import './mixins'
 import './plugins'
 import './thirdParty'
@@ -19,7 +19,7 @@ import './assets/fonts/bebasneue.css'
 
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
-Vue.use(VueSwal)
+// Vue.use(VueSwal)
 Vue.config.productionTip = false
 
 new Vue({

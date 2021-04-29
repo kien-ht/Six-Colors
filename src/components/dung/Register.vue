@@ -8,12 +8,14 @@
       <div class="form-group">
         <label for="email">Email</label>
         <input required name="email" v-model.trim="user.email" placeholder="email" type="email" class="form-control" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
       <br/>
+        
       <div>
         <label for="password">Password</label>
-        <input required class="form-control" name="password" v-model="user.password" placeholder="password" type="password">
+        <!-- <input required class="form-control" name="password" v-model="user.password" placeholder="password" type="password"> -->
+        <TextInput :alo = user.password :blo = "password" ></TextInput>
       </div>
       <br/>
       <div>
@@ -28,7 +30,8 @@
       <br/>
       <div>
         <label for="name">Tên</label>
-        <input required class="form-control" name="name" v-model.trim="user.name" placeholder="name">
+        <!-- <input required class="form-control" name="name" v-model.trim="user.name" placeholder="name"> -->
+        <TextInput :alo = user.name :blo = "name" :type = type></TextInput>
       </div>
       <br/>
     <div>
@@ -66,6 +69,7 @@
 </template>
 
 <script>
+import TextInput from './TextInput.vue'
 import DungService from '@/services/dung.services'
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 export default {
@@ -82,7 +86,9 @@ export default {
         gioitinh: "",
         bank: "",
         userName: "",
-      }
+        
+      },
+      type:'text'
     }
   },
   computed: {
@@ -149,6 +155,9 @@ export default {
                     method: 'POST',
                     data: Object.assign({}, this.user)
                 })
+                if (respone.success) {
+                  localStorage.setItem('token', respone.data.token)
+                }
                 console.log(respone)
             } catch (err) {
                 console.log(err)
@@ -163,6 +172,9 @@ export default {
   },
   mounted () {
     
+  },
+  components: {
+    TextInput
   }
 }
 </script>
