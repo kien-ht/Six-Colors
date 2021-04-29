@@ -23,7 +23,9 @@
         <div class="row" > 
         
           <div class=' col-md-4' v-for="item in listProduct" :key="item.id" >
-              <router-link to='/'>
+
+            <List :product='item'></List>
+              <!-- <router-link to='/'>
                 
                 <div class="card" style="width: 18rem;">
   <img :src='item.img' class="card-img-top" alt="...">
@@ -41,7 +43,7 @@
   </div>
 </div>
 
-              </router-link>
+              </router-link> -->
           </div>
         </div>
         <div class="paging">
@@ -56,8 +58,9 @@
 <script lang='js'>
 import CucService from '@/services/cuc.service.js'
 
+
 import itemList from './fakeData.js'
-import ListProduct from './List.vue'
+import List from './List.vue'
 export default {
     name: 'ListItem',
     data(){
@@ -164,6 +167,9 @@ export default {
     created(){
         this.getList()
     },
+    components:{
+        List
+    }
     
 }
 </script>
