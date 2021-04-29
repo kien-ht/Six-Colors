@@ -1,36 +1,37 @@
 <template>
 <div>
 
-  <!-- <button class='btn btn-link' v-on:click="showListItem"> HOME </button> -->
+ <router-link :to="`/uitem-detail/${product.id}`">
+                
+                <div class="card" style="width: 18rem;">
+  <img :src='product.img' class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+   
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><i>Shop: {{product.seller}}</i></li>
+    <li class="list-group-item">Price: {{product.price}}</li>
+    <li class="list-group-item">Quantity-Sold: {{product.quantitySold}}</li>
+  </ul>
+  <div class="card-body">
+    <small  class='text-muted'>{{product.averageRate}} <i class="far fa-star"></i></small>
+  </div>
+</div>
+
+</router-link>
+ 
   </div>
 </template>
 
 <script>
-// import itemList from './fakeData.js'
-// export default {
-//     name:'List',
-//     props:{
-//         val:{
-            
-//         }
+export default {
+  props:{
+    product:{}
+  }
+}
 
-//     },
-//     data(){
-//         return {
-//             listItem:[]
 
-//         }
-//     },
-// methods: {
-//     showListItem () {
-//          this.$emit('updateListItem',this.listItem)
-//     }
-// },
-// created(){
-//         console.log('data', itemList.getList())
-//         this.listItem= itemList.getList()
-//     }
-// }
 </script>
 
 <style>
