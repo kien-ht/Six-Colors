@@ -1,6 +1,6 @@
 // profile
-import profilePage from '../pages/profile/ProfilePage.vue'
-import profilePostsPage from '../pages/profile/ProfilePostsPage.vue'
+// import profilePage from '../pages/profile/ProfilePage.vue'
+// import profilePostsPage from '../pages/profile/ProfilePostsPage.vue'
 
 // single pages
 import homePage from '../pages/Home.vue'
@@ -41,7 +41,7 @@ export const routes = [
   {
     path: '/profile',
     component: UpdateUser,
-    meta: { title: `${DOMAIN_TITLE} | profile` },
+    meta: { title: `${DOMAIN_TITLE} | profile` }
   },
   {
     path: '/login',
@@ -62,7 +62,7 @@ export const routes = [
   },
   {
     path: '/list-item',
-    name:'list-item',
+    name: 'list-item',
     component: ListItem,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
@@ -70,6 +70,7 @@ export const routes = [
 
     component: List,
     path: '/order-tracking/:id',
+    // eslint-disable-next-line no-dupe-keys
     component: OrderTracking,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
@@ -80,4 +81,4 @@ export const routes = [
     name: 'cart',
     component: CartPage,
     meta: { title: `${DOMAIN_TITLE} | cart` }
-  },]
+  }]

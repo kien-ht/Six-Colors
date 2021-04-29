@@ -1,33 +1,25 @@
 <template>
    <div class="wapper">
     <div class="checkout">
-         <h3 class="Tittel">Danh sách đơn hàng </h3>
-       <b-container class="content-address" v-for="(item,index) in list" :key='index'>
-           <b-row>
-               <b-col md='2'>
-                   <img :src="item.img" alt="hinhanh"/>
-               </b-col>
-                <b-col md='8'>
-                  {{item.name}}
-               </b-col>
-                 <b-col md='2'>
-                  {{ Number(item.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "VNĐ"}}
-               </b-col>
-           </b-row>
-       </b-container>
+        <h3 class="Tittel">Danh sách đơn hàng </h3>
+            <Item v-for="(item,index) in list" :key='index' :Itemdata='item'/>
     </div>
    </div>
 </template>
 <script>
+import Item from './Item.vue'
 import axios from 'axios'
 export default {
   name: 'Ngoc',
-  data () {
+  components: {
+    Item
+  },
+  data() {
     return {
       list: []
     }
   },
-  created () {
+  created() {
     axios.get('http://192.168.10.245:3030/api/items', {
       headers: {
         authorization: `${localStorage.getItem('token')}`
@@ -50,7 +42,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style >
 .content-address img{
     max-width: 50px;
 }
