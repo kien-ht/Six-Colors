@@ -174,6 +174,8 @@ export default {
         console.log("this is productSelected", productSelected);
         let order = JSON.parse(localStorage.getItem("productsInCart")) || []
 
+        console.log(order)
+
         order.push(productSelected)
 
         localStorage.setItem('productsInCart', JSON.stringify(order))

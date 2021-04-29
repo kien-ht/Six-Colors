@@ -18,15 +18,48 @@ const variants = [
             "blue",
         ]
     },
+    {
+        name: "material",
+        options: [
+            "bronze",
+            "gold",
+            "silver",
+        ]
+    },
 ],
 
-const selectedVariant = [
+const selectedVariant13 = [
     {
         name: "size",
-        selectedOption: '37'
+        selectedOption: '36'
     },
     {
         name: "color",
         selectedOption: 'red'
     },
-],
+    {
+        name: "material",
+        selectedOption: 'silver'
+    },
+]
+const selectedVariant4 = [
+    {
+        name: "size",
+        selectedOption: '36'
+    },
+    {
+        name: "material",
+        selectedOption: 'silver'
+    },
+    {
+        name: "color",
+        selectedOption: 'red'
+    },
+]
+ 
+function checkEqual (arr, brr) {
+    return arr.every(a => {
+         const found = brr.find(b => b.name === a.name)
+         return a.selectedOption === found.selectedOption
+    })
+}
