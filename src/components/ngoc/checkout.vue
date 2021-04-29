@@ -60,7 +60,7 @@
           </b-col>
 
             <b-col md="12" class="buttonStylenho">
-                <b-button @click="Comback()" class="ButtonStyle">Quay lại trang giỏ hàng</b-button>
+                <b-button @click="CombackCart()" class="ButtonStyle">Quay lại trang giỏ hàng</b-button>
                 <b-button @click="SaveThongTinTT()" variant="success"  class="ButtonStyle">Đặt đơn</b-button>
               </b-col>
         </b-row>
@@ -174,6 +174,9 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown
+    },
+    CombackCart() {
+      this.changeLocation('/cart')
     }
   
   }

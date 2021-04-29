@@ -13,9 +13,7 @@
         <li>
           <router-link :to="{ name: 'cart' }" exact>Cart</router-link>
         </li>
-        <li>
-          <router-link :to="{ name: 'Checkout' }">Checkout</router-link>
-        </li>
+       
       </ul>
       <ul class="menu side">
         <li v-if="!$currentUser.id">
