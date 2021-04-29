@@ -5,15 +5,18 @@ import profilePostsPage from '../pages/profile/ProfilePostsPage.vue'
 // single pages
 import homePage from '../pages/Home.vue'
 import newsPage from '../pages/news/NewsPage.vue'
-import loginPage from '../pages/Login.vue'
+import login from '@/components/dung/Login.vue'
+import Register from '@/components/dung/Register.vue'
 import notFoundPage from '../pages/NotFound.vue'
 import UitemDetail from '@/components/item/UitemDetail'
+import UpdateUser from '@/components/dung/UpdateUser.vue'
+import CartPage from '../pages/cart'
+import List from '@/components/cuc/List.vue'
 import ListItem from '../components/cuc/ListItem.vue'
-import List from '../components/cuc/List.vue'
+import OrderTracking from '../components/hang/OrderTracking.vue'
 import { routePropResolver } from './util'
 import { DOMAIN_TITLE } from '../.env'
 import Checkout from '../components/ngoc/checkout.vue'
-import Cart from '../components/ngoc/cart.vue'
 export const routes = [
   {
     path: '/',
@@ -37,21 +40,20 @@ export const routes = [
   },
   {
     path: '/profile',
-    component: profilePage,
-    meta: { isAuth: true, title: `${DOMAIN_TITLE} | profile` },
-    children: [
-      {
-        path: '',
-        name: 'profile',
-        component: profilePostsPage
-      }
-    ]
+    component: UpdateUser,
+    meta: { title: `${DOMAIN_TITLE} | profile` },
   },
   {
     path: '/login',
     name: 'login',
-    component: loginPage,
+    component: login,
     meta: { title: `${DOMAIN_TITLE} | login` }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register,
+    meta: { title: `${DOMAIN_TITLE} | register` }
   },
   {
     path: '*',
@@ -60,15 +62,22 @@ export const routes = [
   },
   {
     path: '/list-item',
+    name:'list-item',
     component: ListItem,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
   {
-    path: '/list',
+
     component: List,
+    path: '/order-tracking/:id',
+    component: OrderTracking,
     meta: { title: `${DOMAIN_TITLE} | not found` }
   },
 
   { path: '/Checkout', name: 'Checkout', component: Checkout, meta: { title: `${DOMAIN_TITLE} | Checkout` } },
-  { path: '/cart', name: 'Cart', component: Cart, meta: { title: `${DOMAIN_TITLE} | Cart` } }
-]
+  {
+    path: '/cart',
+    name: 'cart',
+    component: CartPage,
+    meta: { title: `${DOMAIN_TITLE} | cart` }
+  },]

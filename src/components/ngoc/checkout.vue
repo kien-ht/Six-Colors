@@ -95,19 +95,19 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     ListItem
   },
-  data () {
+  data() {
     return {
       selected: '1',
       dismissSecs: 3,
       save: false,
       dismissCountDown: 0,
       change: true,
-      address: User.address,
-      name: User.userName,
+      address: User.address ? User.address : '',
+      name: User.userName ? User.userName : '',
       phone: User.phoneNumber ? User.phoneNumber : '',
       note: '',
       time: '',
-      money: localStorage.getItem('TotalMoney'),
+      money: localStorage.getItem('TotalMoney') ? localStorage.getItem('TotalMoney') : 0,
       options: [
         {
           value: '1',
@@ -122,18 +122,17 @@ export default {
   },
  
   methods: {
-    changeLocation (link) {
-      window.location = link
+    changeLocation(link) {
+      this.$router.push(link)
     },
-    Comback () {
-      console.log(this.time)
+    Comback() {
       this.change = !this.change
     },
-    SaveThongTinTT () {
+    SaveThongTinTT() {
       const file = {
         totalAmount: this.money,
         recipientName: this.name,
-        orderId: Math.random(),
+        orderId: (Math.floor(Math.random() * 10000)).toString(36) + Date.now(),
         recipientPhone: this.phone,
         recipientAddress: this.note,
         additionalNote: this.note,
@@ -163,7 +162,8 @@ export default {
             localStorage.setItem('inforUser', JSON.stringify(response.data.data))
             this.$swal('Good job!', 'Đặt thành công', 'success').then((success) => {
               if (success) {
-                this.changeLocation('/cart')
+                localStorage.removeItem('productsInCart')
+                this.changeLocation(`/order-tracking/${file.orderId}`)
               }
             })
             // eslint-disable-next-line no-undef
@@ -172,7 +172,7 @@ export default {
           console.log(error)
         })
     },
-    countDownChanged (dismissCountDown) {
+    countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown
     }
   

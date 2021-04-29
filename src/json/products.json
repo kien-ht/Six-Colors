@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "name": "Áo bomber",
+    "price": "200",
+    "img": "https://image.shutterstock.com/image-photo/urban-girl-fashion-street-look-600w-1847829430.jpg",
+    "quantity": 1,
+    "variants": [
+      {
+        "name": "size",
+        "option": "36"
+      },
+      {
+        "name": "color",
+        "option": "red"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "[Mã FASHIONGREEN264 giảm 10% đơn 99k] Quần JEAN ỐNG RỘNG DÁNG SUÔNG MÀU XÁM Kèm Hình Thật",
+    "price": "210",
+    "img": "https://image.shutterstock.com/image-photo/stack-clothing-jeans-sweaters-on-600w-1268384791.jpg",
+    "quantity": 1,
+    "variants": [
+      {
+        "name": "size",
+        "option": "36"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Bagggggg",
+    "price": "240",
+    "img": "https://image.shutterstock.com/image-photo/moscow-russia-08142016-fake-handbag-600w-469008173.jpg",
+    "quantity": 5,
+    "variants": [
+      {
+        "name": "size",
+        "option": "36"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Shoes 1",
+    "price": "600",
+    "img": "https://image.shutterstock.com/image-photo/male-product-reviewer-tells-his-600w-1616372782.jpg",
+    "quantity": 4,
+    "variants": [
+      {
+        "name": "size",
+        "option": "36"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Shoes 2",
+    "price": "300",
+    "img": "https://via.placeholder.com/150",
+    "quantity": 2,
+    "variants": [
+      {
+        "name": "size",
+        "option": "36"
+      }
+    ]
+  }
+]
