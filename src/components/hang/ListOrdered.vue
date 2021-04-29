@@ -1,11 +1,10 @@
 <template>
     <div>
         <div class="list-product">
-        <div class="product-item" v-for="item in orderInfo.itemList" :key="item.id">
-            <img v-bind:src="item.image" >
-            <span class="name-product">{{item.name}}</span>
-            <span class="price">{{item.price}} đ</span>
+        <div  v-for="item in orderInfo.listItem" :key="item.id">
+            <order-product :type="display" class="product-item" :productItem="item"></order-product>
         </div>
+
         
     </div>
     <div class="total-order">
@@ -28,12 +27,13 @@
 </template>
 
 <script>
-
+import OrderProduct from "./OrderProduct.vue";
 export default {
     data(){
         return { 
             idActive: '',
-            listProduct: []
+            listProduct: [],
+            display: ''
         }
     },
      props: ['orderInfo'],
@@ -41,12 +41,15 @@ export default {
         
     },
     created(){
-        
+        this.display = 'block'
         console.log(orderInfo)
         this.listProduct = orderInfo.itemList
     },
     methods: {
        
+    },
+    components: {
+        OrderProduct: OrderProduct
     }
 }
 </script>

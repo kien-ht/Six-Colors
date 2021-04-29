@@ -79,7 +79,7 @@ export default {
           console.log("res", res);
           this.dataAll = res.data.data;
           const orderInfo = res.data.data.orders.find(
-            (item) => item.orderId === +this.$route.params.id
+            (item) => item.orderId === this.$route.params.id
           );
 
           this.orderInfo = orderInfo;
